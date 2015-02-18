@@ -5,11 +5,11 @@ angular.module("ngJustGage", [])
       scope: {
         id: '@',
         class: '@',
-        min: '=',
-        max: '=',
+        min: '@',
+        max: '@',
         title: '@',
-        value: '=',
-        options: '='
+        value: '@',
+        options: '&options'
       },
       template: '<div id="{{id}}-justgage" class="{{class}}"></div>',
       link: function (scope,element,attrs) {
@@ -20,7 +20,8 @@ angular.module("ngJustGage", [])
             max: scope.max,
             title: scope.title,
             value: scope.value
-          }
+          };
+          scope.options = scope.options();
           if ( scope.options ) {
               for (var key in scope.options) {
                   options[key]=scope.options[key];
