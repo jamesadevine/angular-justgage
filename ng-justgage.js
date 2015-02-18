@@ -21,12 +21,20 @@ angular.module("ngJustGage", [])
             title: scope.title,
             value: scope.value
           };
+
           scope.options = scope.options();
+
           if ( scope.options ) {
               for (var key in scope.options) {
                   options[key]=scope.options[key];
               }
           }
+
+          if(options['width'] && options['height']){
+            $(element).width(options['width']);
+            $(element).height(options['height']);
+          }
+
           var graph = new JustGage(options);
 
           scope.$watch('max', function (updatedMax) {
